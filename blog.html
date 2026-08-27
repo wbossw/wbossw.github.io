@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portfolio de ciberseguridad, pentesting y Writeups de @wbossw.">
+  <meta property="og:title" content="wbossw - Ciberseguridad & Pentesting & Bug Bounty">
+  <meta property="og:description" content="Auditorías ofensivas, laboratorios y recursos de seguridad.">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <title>wbossw - Blog</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+  
+  <canvas id="matrix"></canvas>
+
+  <div id="container">
+    <aside id="sidebar">
+      <div id="logo">
+        <img
+          src="assets/p1r4t3-wbossw.png"
+          alt="wbossw logo"
+          data-i18n-attr="alt:logo.alt"
+        >
+      </div>
+
+      <a href="https://wbossw.github.io/" class="nav-link active">
+        <i class="fas fa-home" aria-hidden="true"></i>
+        <span data-i18n="nav.home">Inicio</span>
+      </a>
+
+      <a href="projects" class="nav-link">
+        <i class="fas fa-terminal" aria-hidden="true"></i>
+        <span data-i18n="nav.projects">Proyectos</span>
+      </a>
+
+      <a href="guides" class="nav-link">
+        <i class="fas fa-book" aria-hidden="true"></i>
+        <span data-i18n="nav.guides">Guías</span>
+      </a>
+
+      <a href="blog" class="nav-link">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+        <span data-i18n="nav.blog">Blog</span>
+      </a>
+
+      <a href="contact" class="nav-link">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <span data-i18n="nav.contact">Contacto</span>
+      </a>
+    </aside>
+
+    <div class="lang-toggle-container">
+      <button id="lang-btn" class="lang-btn" type="button" aria-label="Cambiar idioma">
+        <i class="fas fa-globe"></i>
+        <span id="lang-label">EN</span>
+      </button>
+    </div>
+    
+    <div id="content">
+      <h1>Blog</h1>
+      <p class="subtitle">@wbossw</p>
+      <p class="terminal-prompt">wbossw@blog:~$ Boveda de contenido </p>
+
+      <div class="description">
+        Este espacio reúne mi trayectoria en ciberseguridad: certificaciones, competiciones, investigaciones, logros y otros hitos que reflejan mi evolución como investigador de seguridad y Bug Bounty Hunter.
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <i class="fas fa-search"></i>
+          <input id="q" type="text" placeholder="Buscar (certificaciones, competiciones, recursos...)" aria-label="Buscar en el blog">
+        </div>
+        <span class="chip active" data-filter="all">Todos</span>
+        <span class="chip" data-filter="NASA">NASA</span>
+        <span class="chip" data-filter="Secur0">Secur0</span>
+        <span class="chip" data-filter="GrayBack">GrayBack</span>
+        <span class="chip" data-filter="Competiciones">Competiciones</span>
+        <span class="chip" data-filter="Certificados">Certificados</span>
+        <span class="chip" data-filter="Cisco">Cisco</span>
+        <span class="chip" data-filter="Vulnerability Disclosure">Vulnerability Disclosure</span>
+        <span class="chip" data-filter="Bug Bounty">Bug Bounty</span>
+      </div>
+
+      <section class="blog-grid" id="posts">
+
+        <!-- Mensaje de Búsqueda Sin Resultados -->
+        <div id="no-results" class="no-results" style="display: none;">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h3>[ 404 ] No se encontraron resultados</h3>
+          <p>No hay artículos que coincidan con tu búsqueda o filtro seleccionado.</p>
+        </div>
+
+        <article class="post" data-tags="Certificado Secur0 Vulnerability Disclosure Program (VDP) - QryptLab">
+          <div class="pills-container">
+            <span class="pill">Secur0</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/vulnerability-high.png" alt="Certificado Secur0 Vulnerability Disclosure Program (VDP) - QryptLab" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+          
+          <h3>Certificado vulnerabilidad alta en Secur0</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 07-07-2026</span>
+            <span class="badge">Secur0</span>
+            <span class="readtime"><i class="far fa-clock"></i> 1 hora 30 minutos</span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad Race Condition de alta severidad detectada en el programa Vulnerability Disclosure Program (VDP) de QryptLab, a través de la plataforma Secur0.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/vulnerability-high.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado Secur0 Vulnerability Disclosure Program (VDP) - GAIN">
+          <div class="pills-container">
+            <span class="pill">Secur0</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/vulnerability-medium.png" alt="Certificado Secur0 Vulnerability Disclosure Program (VDP) - GAIN" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+          
+          <h3>Certificado vulnerabilidad media en Secur0</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 02-04-2026</span>
+            <span class="badge">Secur0</span>
+            <span class="readtime"><i class="far fa-clock"></i> 1 hora 20 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de Account Takeover mediante CSRF de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de GAIN, a través de la plataforma Secur0.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/vulnerability-medium.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado Secur0 Vulnerability Disclosure Program (VDP) - QryptLab">
+          <div class="pills-container">
+            <span class="pill">Secur0</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/vulnerability-medium-.png" alt="Certificado Secur0 Vulnerability Disclosure Program (VDP) - QryptLab" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+
+          <h3>Certificado vulnerabilidad media en Secur0</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 04-07-2026</span>
+            <span class="badge">Secur0</span>
+            <span class="readtime"><i class="far fa-clock"></i> 20 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de manipulación del Access-Token de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de QryptLab, a través de la plataforma Secur0.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/vulnerability-medium-.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado Secur0 Vulnerability Disclosure Program (VDP) - Bug Bounty Labs (BBLabs)">
+          <div class="pills-container">
+            <span class="pill">Secur0</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/Vulnerability-medium-1.png" alt="Certificado Secur0 Vulnerability Disclosure Program (VDP) - Bug Bounty Labs (BBLabs)" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+
+          <h3>Certificado vulnerabilidad media en Secur0</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 04-07-2026</span>
+            <span class="badge">Secur0</span>
+            <span class="readtime"><i class="far fa-clock"></i> 15 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de Exfiltración de metadatos en imágenes de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de Bug Bounty Labs (BBLabs), a través de la plataforma Secur0.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Vulnerability-medium-1.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation">
+          <div class="pills-container">
+            <span class="pill">GrayBack</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-1.png" alt="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+
+          <h3>Certificado vulnerabilidad media en GrayBack</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 06-07-2026</span>
+            <span class="badge">GrayBack</span>
+            <span class="readtime"><i class="far fa-clock"></i> 1 hora 35 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de Insecure Direct Object Reference (IDOR) de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de Klara-Automation, a través de la plataforma GrayBack.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-1.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation">
+          <div class="pills-container">
+            <span class="pill">GrayBack</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-2.png" alt="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+
+          <h3>Certificado vulnerabilidad media en GrayBack</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 06-07-2026</span>
+            <span class="badge">GrayBack</span>
+            <span class="readtime"><i class="far fa-clock"></i> 1 hora 13 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de Business Logic Bypass de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de Klara-Automation, a través de la plataforma GrayBack.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-2.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation">
+          <div class="pills-container">
+            <span class="pill">GrayBack</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-3.png" alt="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+
+          <h3>Certificado vulnerabilidad media en GrayBack</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 06-07-2026</span>
+            <span class="badge">GrayBack</span>
+            <span class="readtime"><i class="far fa-clock"></i> 20 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de Validación insuficiente en ajustes de cuenta de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de Klara-Automation, a través de la plataforma GrayBack.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-3.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation">
+          <div class="pills-container">
+            <span class="pill">GrayBack</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-4.png" alt="Certificado GrayBack Vulnerability Disclosure Program (VDP) - Klara-Automation" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+
+          <h3>Certificado vulnerabilidad media en GrayBack</h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 06-07-2026</span>
+            <span class="badge">GrayBack</span>
+            <span class="readtime"><i class="far fa-clock"></i> 47 minutos </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por una vulnerabilidad de Race Condition de severidad media detectada en el programa Vulnerability Disclosure Program (VDP) de Klara-Automation, a través de la plataforma GrayBack.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Vulnerability-Medium-GrayBack-4.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="NASA Letter Of Recognition (LOR)">
+          <div class="pills-container">
+            <span class="pill">NASA</span>
+            <span class="pill">Certificados</span>
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="text-align:center; width:100%; margin-bottom:12px;">
+            <img src="https://wbossw.github.io/assets/certificates/Letter-of-Recognition-NASA.jpg" alt="NASA - Letter Of Recognition (LOR)" style="width:180px; height:auto; border-radius:8px;">
+          </div>
+
+          <h3>NASA — Letter of Recognition</h3>
+
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 22-05-2026</span>
+            <span class="badge">NASA</span>
+            <span class="readtime"><i class="far fa-clock"></i> 3 semanas</span>
+          </div>
+
+          <p class="excerpt">
+            Carta de reconocimiento otorgada por la divulgación responsable de una vulnerabilidad Account deletion via Cross-Site Request Forgery (CSRF) detectada en el programa Vulnerability Disclosure Program (VDP) de la NASA, a través de la plataforma Bugcrowd.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Letter-of-Recognition-NASA.jpg" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Certificado</a>
+            <a class="btn" href="https://bugcrowd.com/disclosures/e97add76-3838-4d24-a86a-ae850003ad15/critical-csrf-vulnerability-exploiting-account-deletion-on-nasa-subscription-service"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Vulnerabilidades aceptadas en el programa de Bug Bounty de Recorded Future">
+          <div class="pills-container">
+            <span class="pill">Bug Bounty</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/bugcrowd.png" alt="Vulnerabilidades aceptadas en el programa de Bug Bounty de Recorded Future" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+          
+          <h3>Vulnerabilidades aceptadas en el programa de Bug Bounty (BBP) de Recorded Future </h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 13-04-2026 - 17-06-2026 </span>
+            <span class="badge">Bug Bounty</span>
+            <span class="readtime"><i class="far fa-clock"></i> 3 días </span>
+          </div>
+          <p class="excerpt">
+            Vulnerabilidades aceptadas en el programa de Bug Bounty (BBP) de Recorded Future, gestionado a través de la plataforma Bugcrowd. Severidades de la vulnerabilidades: P4
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://bugcrowd.com/engagements/recorded-future-mbb-og/crowdstream" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Crowdstream</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Vulnerabilidad de severidad baja aceptada en el Gobierno de Ohio">
+          <div class="pills-container">
+            <span class="pill">Vulnerability Disclosure</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/bugcrowd.png" alt="Vulnerabilidad aceptada en el programa Vulnerability Disclosure Program (VDP) del Gobierno de Ohio" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+          
+          <h3>Vulnerabilidad aceptada en el programa Vulnerability Disclosure Program (VDP) del Gobierno de Ohio </h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 20-03-2026</span>
+            <span class="badge">Vulnerability Disclosure</span>
+            <span class="readtime"><i class="far fa-clock"></i> 6 horas </span>
+          </div>
+          <p class="excerpt">
+            Vulnerabilidad aceptada en el programa Vulnerability Disclosure Program (VDP) del Gobierno de Ohio, gestionado a través de la plataforma Bugcrowd. Severidad de la vulnerabilidad: P4
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://bugcrowd.com/engagements/ohio-ago-vdp-pro/crowdstream" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Crowdstream</a>
+            <a class="btn" href="https://wbossw.github.io/blog"><i class="fas fa-book"></i>Ver Reporte</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Certificado Ethical Hacking Cisco">
+          <div class="pills-container">
+            <span class="pill">Certificados</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/Cisco-Certificate-in-Ethical-Hacking-certificate.jpg" alt="Certificado Ethical Hacking Cisco" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+          
+          <h3> Certificado de Cisco Ethical Hacking (CEH) </h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 02-08-2026 </span>
+            <span class="badge">Cisco</span>
+            <span class="readtime"><i class="far fa-clock"></i> 4 horas </span>
+          </div>
+          <p class="excerpt">
+            Certificado otorgado por resolver exitosamente un laboratorio práctico de penetración, demostrando competencias en reconocimiento con Nmap, fuzzing web, fuerza bruta, inyección SQL, explotación con webshell a reverse shell, scripts en Python y escalada de privilegios.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/Cisco%Certificate%20in%20Ethical%20Hacking%20certificate.jpg" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver certificado</a>
+            <a class="btn" href="https://cp.certmetrics.com/cisco/en/public/verify/credential/1db575aba7bb49b5a295693e786cac51"><i class="fas fa-book"></i>Comprobar validez</a>
+          </div>
+        </article>
+
+        <article class="post" data-tags="Ganador de la competición CyberFightClub (CFC)">
+          <div class="pills-container">
+            <span class="pill">Competiciones</span>
+          </div>
+
+          <div style="display:flex; justify-content:center; margin-bottom:14px;">
+            <img src="https://wbossw.github.io/assets/certificates/CFC.png" alt="Ganador de la competición Cyber Fight Club (CFC)" style="width:100%; max-width:300px; height:auto; border:2px solid #fff; border-radius:10px; box-shadow:0 0 15px rgba(255,255,255,.15);">
+          </div>
+          
+          <h3>Ganador de la competición Cyber Fight Club (CFC) </h3>
+          <div class="meta">
+            <span class="badge date"><i class="far fa-calendar-alt"></i> 04-07-2026 - 10-07-2026</span>
+            <span class="badge">Secur0</span>
+            <span class="badge">GrayBack</span>
+            <span class="badge">Bug Bounty</span>
+            <span class="readtime"><i class="far fa-clock"></i> 6 días </span>
+          </div>
+          <p class="excerpt">
+            4.º puesto en la competición Cyber Fight Club (CFC), organizada por Secur0 y GrayBack, con una puntuación final de 89,5 puntos de criticidad. La clasificación se obtuvo tras la identificación y explotación de múltiples vulnerabilidades en distintos escenarios de seguridad ofensiva.
+          </p>
+          <div class="btns">
+            <a class="btn" href="https://wbossw.github.io/assets/certificates/CFC.png" target="_blank" rel="noopener"><i class="fas fa-image"></i>Ver Resultados</a>
+            <a class="btn" href="https://app.secur0.com/competitions/2#top_hackers"><i class="fas fa-book"></i>Ver Estadísticas</a>
+          </div>
+        </article>
+
+      </section>
+       <div class="ticker-container">
+        <div id="ticker" class="ticker">wbossw • Bug Bounty Hunter • Pentester •  Certificaciones • Recursos • Proyectos</div>
+      </div>
+      <footer></footer>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Proyectos, herramientas y automatizaciones de ciberseguridad de @wbossw."
+    data-i18n-attr="content:meta.description"
+  >
+  <meta
+    property="og:title"
+    content="wbossw - Proyectos de Ciberseguridad"
+    data-i18n-attr="content:meta.og.title">
+  <meta
+    property="og:description"
+    content="Herramientas, automatizaciones y proyectos de seguridad."
+    data-i18n-attr="content:meta.og.description">
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+  <title data-i18n="poc.page.title">wbossw - Proyectos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/projects.css">
+</head>
+
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <div class="lang-toggle-container">
+    <button
+      id="lang-btn"
+      class="lang-btn"
+      type="button"
+      aria-label="Cambiar idioma"
+      data-i18n-attr="aria-label:lang.button">
+
+      <i class="fas fa-globe" aria-hidden="true"></i>
+      <span id="lang-label">EN</span>
+    </button>
+  </div>
+
+  <div id="container">
+    <aside id="sidebar">
+      <div id="logo">
+        <img
+          src="assets/p1r4t3-wbossw.png"
+          alt="wbossw logo"
+          data-i18n-attr="alt:logo.alt">
+
+      </div>
+
+      <a href="https://wbossw.github.io/" class="nav-link">
+        <i class="fas fa-home" aria-hidden="true"></i>
+        <span data-i18n="nav.home">Inicio</span>
+      </a>
+
+      <a href="projects" class="nav-link active">
+        <i class="fas fa-terminal" aria-hidden="true"></i>
+        <span data-i18n="nav.projects">Proyectos</span>
+      </a>
+
+      <a href="guides" class="nav-link">
+        <i class="fas fa-book" aria-hidden="true"></i>
+        <span data-i18n="nav.guides">Guías</span>
+      </a>
+
+      <a href="blog" class="nav-link">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+        <span data-i18n="nav.blog">Blog</span>
+      </a>
+
+      <a href="contact" class="nav-link">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <span data-i18n="nav.contact">Contacto</span>
+      </a>
+    </aside>
+
+    <main id="content">
+      <header>
+        <h1 data-i18n="poc.title">Proyectos</h1>
+        <p class="subtitle">@wbossw</p>
+
+        <p class="terminal-prompt" data-i18n="poc.terminal">
+          wbossw@projects:~$ Inicializando proyectos...
+        </p>
+      </header>
+
+      <section class="description" data-i18n="poc.description">
+        Colección de repositorios publicados en GitHub con herramientas de pentesting, automatización de tareas y utilidades para seguridad ofensiva.
+   </section>
+
+      <section
+        class="poc-grid"
+        aria-label="Proyectos"
+        data-i18n-attr="aria-label:poc.grid.label">
+
+        <article class="poc-card">
+          <span class="pill" data-i18n="poc.tool">HERRAMIENTA</span>
+
+          <h2 class="poc-title" data-i18n="poc.audit.title">
+            Herramientas de Auditorías
+          </h2>
+
+          <div class="meta">
+            <span class="badge" data-i18n="poc.python">Python</span>
+	    <span class="badge" data-i18n="poc.python">Bash</span>
+            <span class="badge" data-i18n="poc.audit">Auditoría</span>
+          </div>
+
+          <p class="poc-desc" data-i18n="poc.audit.description">
+            Herramientas automatizadas para asistencia en pruebas de auditoría ofensiva.
+          </p>
+
+          <a
+            class="btn"
+            href="https://github.com/wbossw"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="fas fa-code-branch" aria-hidden="true"></i>
+            <span data-i18n="poc.github">Repositorio GitHub</span>
+          </a>
+        </article>
+
+        <article class="poc-card">
+          <span class="pill" data-i18n="poc.tool">HERRAMIENTA</span>
+
+          <h2 class="poc-title" data-i18n="poc.dorking.title">
+            Herramienta de Recopilación de Subdominios
+          </h2>
+
+          <div class="meta">
+            <span class="badge" data-i18n="poc.search">Búsqueda</span>
+          </div>
+
+          <p class="poc-desc" data-i18n="poc.dorking.description">
+            Scripts de apoyo para extracción y correlación de información pública en fuentes abiertas.
+          </p>
+
+          <a
+            class="btn"
+            href="https://github.com/wbossw"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="fas fa-code-branch" aria-hidden="true"></i>
+            <span data-i18n="poc.github">Repositorio GitHub</span>
+          </a>
+        </article>
+
+        <article class="poc-card">
+          <span class="pill" data-i18n="poc.tool">HERRAMIENTA</span>
+
+          <h2 class="poc-title" data-i18n="poc.nmap.title">
+            Script Automatizado para Nmap
+          </h2>
+
+          <div class="meta">
+            <span class="badge" data-i18n="poc.bash">Bash</span>
+            <span class="badge" data-i18n="poc.nmap">Nmap</span>
+          </div>
+
+          <p class="poc-desc" data-i18n="poc.nmap.description">
+            Colección de scripts para automatizar escaneos Nmap y parseo de resultados durante la fase de reconocimiento.
+          </p>
+
+          <a
+            class="btn"
+            href="https://github.com/wbossw"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="fas fa-code-branch" aria-hidden="true"></i>
+            <span data-i18n="poc.github">Repositorio GitHub</span>
+          </a>
+        </article>
+
+        <article class="poc-card">
+          <span class="pill" data-i18n="poc.tool">HERRAMIENTA</span>
+
+          <h2 class="poc-title" data-i18n="poc.sniffer.title">
+            Network Sniffer
+          </h2>
+
+          <div class="meta">
+            <span class="badge" data-i18n="poc.network">Redes</span>
+            <span class="badge" data-i18n="poc.sniffing">Sniffing</span>
+          </div>
+
+          <p class="poc-desc" data-i18n="poc.sniffer.description">
+            Utilidades en capa de red para inspección y análisis de tráfico en entornos controlados.
+          </p>
+
+          <a
+            class="btn"
+            href="https://github.com/wbossw"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="fas fa-code-branch" aria-hidden="true"></i>
+            <span data-i18n="poc.github">Repositorio GitHub</span>
+          </a>
+        </article>
+      </section>
+
+      <footer class="ticker-container">
+        <div id="ticker" class="ticker">wbossw • Bug Bounty Hunter • Pentester •  Certificaciones • Recursos • Proyectos</div>
+      </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Página no encontrada - wbossw"
+    data-i18n-attr="content:meta.404.description"
+  >
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+  <title data-i18n="page.404.title">Página no encontrada - wbossw</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="css/404.css">
+</head>
+
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <div id="container">
+    <aside id="sidebar">
+      <div id="logo">
+        <img
+          src="assets/p1r4t3-wbossw.png"
+          alt="wbossw logo"
+          data-i18n-attr="alt:logo.alt"
+        >
+      </div>
+
+      <a href="https://wbossw.github.io/" class="nav-link active">
+        <i class="fas fa-home" aria-hidden="true"></i>
+        <span data-i18n="nav.home">Inicio</span>
+      </a>
+
+      <a href="projects" class="nav-link">
+        <i class="fas fa-terminal" aria-hidden="true"></i>
+        <span data-i18n="nav.projects">Proyectos</span>
+      </a>
+
+      <a href="guides" class="nav-link">
+        <i class="fas fa-book" aria-hidden="true"></i>
+        <span data-i18n="nav.guides">Guías</span>
+      </a>
+
+      <a href="blog" class="nav-link">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+        <span data-i18n="nav.blog">Blog</span>
+      </a>
+
+      <a href="contact" class="nav-link">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <span data-i18n="nav.contact">Contacto</span>
+      </a>
+    </aside>
+
+    <div class="lang-toggle-container">
+      <button
+        id="lang-btn"
+        class="lang-btn"
+        type="button"
+        aria-label="Cambiar idioma"
+        data-i18n-attr="aria-label:lang.button"
+      >
+        <i class="fas fa-globe" aria-hidden="true"></i>
+        <span id="lang-label">EN</span>
+      </button>
+    </div>
+
+    <main id="content">
+      <section class="error-container">
+        <div class="terminal-header">
+          <span class="terminal-dot red" aria-hidden="true"></span>
+          <span class="terminal-dot yellow" aria-hidden="true"></span>
+          <span class="terminal-dot green" aria-hidden="true"></span>
+
+          <span
+            class="terminal-title"
+            data-i18n="error.terminalTitle"
+          >
+            wbossw@root:Error 404
+          </span>
+        </div>
+
+        <div class="error-content">
+          <p class="terminal-line">
+            <span class="prompt">wbossw@root:~$</span>
+            <span data-i18n="error.request">
+              solicitud de acceso
+            </span>
+          </p>
+
+          <div class="error-code" aria-label="Error 404">
+            404
+          </div>
+
+          <h1 data-i18n="error.title">
+            Página no encontrada
+          </h1>
+
+          <p
+            class="error-message"
+            data-i18n="error.message"
+          >
+            El recurso solicitado no existe o ha sido movido.
+          </p>
+
+          <p class="error-terminal">
+            <span class="prompt">wbossw@root:~$</span>
+
+            <span
+              class="typing"
+              data-i18n="error.command"
+            >
+              ERROR: Recurso no encontrado
+            </span>
+          </p>
+
+          <a href="/" class="home-button">
+            <i class="fas fa-terminal" aria-hidden="true"></i>
+            <span data-i18n="error.home">
+              Volver al inicio
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <footer class="ticker-container">
+      <div class="ticker-container">
+        <div id="ticker" class="ticker">wbossw • Bug Bounty Hunter • Pentester •  Certificaciones • Recursos • Proyectos</div>
+      </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById('matrix');
+
+      if (!canvas) {
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
+      const letters = '01';
+      const fontSize = 16;
+
+      let columns = 0;
+      let drops = [];
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(1);
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.font = `${fontSize}px "Share Tech Mono"`;
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters[Math.floor(Math.random() * letters.length)];
+
+          ctx.fillText(
+            text,
+            i * fontSize,
+            drops[i] * fontSize
+          );
+
+          if (
+            drops[i] * fontSize > canvas.height &&
+            Math.random() > 0.975
+          ) {
+            drops[i] = 0;
+          }
+
+          drops[i]++;
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      draw();
+    })();
+  </script>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/lang.js"></script>
+</body>
+</html>

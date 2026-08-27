@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portfolio de ciberseguridad, pentesting y Writeups de @wbossw.">
+  <meta property="og:title" content="wbossw - Ciberseguridad & Pentesting & Bug Bounty">
+  <meta property="og:description" content="Auditorías ofensivas, laboratorios y recursos de seguridad.">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <title>wbossw - Contacto</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+
+  <canvas id="matrix"></canvas>
+
+  <div id="container">
+    <aside id="sidebar">
+      <div id="logo">
+        <img src="assets/p1r4t3-wbossw.png" alt="wbossw logo">
+      </div>
+      <a href="https://wbossw.github.io/" class="nav-link"><i class="fas fa-home"></i>Inicio</a>
+      <a href="projects" class="nav-link"><i class="fas fa-terminal"></i>Proyectos</a>
+      <a href="guides" class="nav-link"><i class="fas fa-book"></i>Guías</a>
+      <a href="blog" class="nav-link"><i class="fas fa-pen-nib"></i>Blog</a>
+      <a href="contact" class="nav-link active"><i class="fas fa-envelope"></i>Contacto</a>
+    </aside>
+
+<div class="lang-toggle-container">
+  <button id="lang-btn" class="lang-btn" type="button" aria-label="Cambiar idioma">
+    <i class="fas fa-globe"></i>
+    <span id="lang-label">EN</span>
+  </button>
+</div>
+    
+    <main id="content">
+      <h1>Contacto</h1>
+      <p class="subtitle">@wbossw</p>
+      <p class="terminal-prompt">wbossw@contact:~$ Canales seguros listos. ¡Hablemos!</p>
+
+      <div class="description">
+        ¿Buscas auditorías, PoC ofensivas y demás? Escríbeme.
+      </div>
+
+      <div class="grid">
+        <section class="card">
+          <span class="pill">Directo</span>
+          <h3>Canales</h3>
+          <div class="line"></div>
+          <p style="margin: 6px 0 10px;">Correo principal:</p>
+          <div style="font-size: 1.05rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <a id="mailLink" href="mailto:wbossw.prize815@passinbox.com" class="btn">
+              <i class="fas fa-envelope"></i> wbossw.prize815@passinbox.com
+            </a>
+            <button id="copyMail" class="btn" type="button">
+              <i class="fas fa-copy"></i> Copiar
+            </button>
+          </div>
+          <div class="line"></div>
+         </section>
+
+        <section class="card">
+          <span class="pill">Servicios</span>
+          <h3>¿Qué puedo hacer?</h3>
+          <div class="line"></div>
+          <ul style="line-height: 1.8; color: #e6e6e6; margin-left: 16px;">
+	<li><span class="badge">Pentesting</span> Evaluación y explotación de vulnerabilidades.</li>
+	<li><span class="badge">Web / App</span> Auditoría y análisis de aplicaciones.</li>
+	<li><span class="badge">Redes</span> Enumeración, explotación y post-explotación.</li>
+	<li><span class="badge">Automatización</span> Desarrollo de herramientas para seguridad ofensiva.</li>
+          </ul>
+          <div class="line"></div>
+          <p style="color: #cfcfcf; font-size: .95rem;">
+          </p>
+        </section>
+
+        <section class="card">
+          <span class="pill">Propuesta</span>
+          <h3>Contáctame</h3>
+          <div class="line"></div>
+          <form id="contactForm">
+            <div class="row">
+              <div>
+                <label for="name">Nombre</label>
+                <input id="name" name="name" type="text" required placeholder="Tu nombre o empresa">
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="tu@email.com">
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="service">Tipo de proyecto</label>
+                <select id="service" name="service" required>
+		<option value="Web">Pentesting Web</option>
+		<option value="API">Pentesting de APIs</option>
+		<option value="Network">Pentesting de Redes</option>
+		<option value="Mobile">Pentesting de Aplicaciones Móviles</option>
+		<option value="SecurityAudit">Auditoría de Seguridad</option>
+		<option value="RedTeam">Red Team</option>
+		<option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div>
+                <label for="timeline">Urgencia</label>
+                <select id="timeline" name="timeline">
+                  <option value="Normal">Normal (7-14 días)</option>
+                  <option value="Alta">Alta (&lt;= 7 días)</option>
+                  <option value="Baja">Baja (1–2 meses)</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="msg">Mensaje</label>
+            <textarea id="msg" name="msg" placeholder="Cuéntame sobre tu proyecto, entorno o necesidad de seguridad y qué tipo de evaluación, auditoría o asesoramiento necesitas."></textarea>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px;">
+              <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+              <button class="btn" type="reset"><i class="fas fa-eraser"></i> Limpiar</button>
+            </div>
+          </form>
+          <p style="margin-top: 10px; color: #cfcfcf; font-size: .9rem;">
+            Al enviar, se abrirá tu cliente de correo con los datos prellenados (no se guarda nada en el sitio web).
+          </p>
+        </section>
+
+        <section class="card">
+          <span class="pill">Notas</span>
+          <h3>Política & disponibilidad</h3>
+          <div class="line"></div>
+          <ul style="line-height: 1.8; color: #e6e6e6; margin-left: 16px;">
+          <li><strong>Autorización:</strong> Todas las evaluaciones de seguridad se realizan exclusivamente sobre sistemas, aplicaciones e infraestructuras con autorización previa.</li>
+          <li><strong>Metodología:</strong> Evaluación técnica basada en metodologías de seguridad ofensiva, con evidencias reproducibles y recomendaciones de mitigación priorizadas.</li>
+	  <li><strong>Comunicación:</strong> La información, evidencias y resultados obtenidos durante los proyectos se tratan de forma confidencial.</li>
+	  <li><strong>Comunicación:</strong> Documentación y comunicación disponibles en español e inglés, adaptadas a las necesidades técnicas del proyecto.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="ticker-container">
+        <div id="ticker" class="ticker">
+          wbossw • Bug Bounty Hunter • Pentester •  Certificaciones • Recursos • Proyectos
+        </div>
+      </div>
+
+      <footer></footer>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="/js/contact.js"></script>
+  <script src="/js/lang.js"></script>
+</body>
+</html>

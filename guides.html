@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Guías y Writeups de ciberseguridad de @wbossw."
+  >
+  <meta
+    property="og:title"
+    content="wbossw - Guías y Writeups"
+  >
+  <meta
+    property="og:description"
+    content="Writeups de Hack The Box, PortSwigger y laboratorios web."
+  >
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+  <title>wbossw - Guías</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="css/guides.css">
+</head>
+
+<body>
+
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <div id="container">
+
+    <aside id="sidebar">
+
+      <div id="logo">
+        <img src="assets/p1r4t3-wbossw.png" alt="wbossw logo">
+      </div>
+
+      <a href="https://wbossw.github.io/" class="nav-link">
+        <i class="fas fa-home" aria-hidden="true"></i>
+        Inicio
+      </a>
+
+      <a href="projects" class="nav-link">
+        <i class="fas fa-terminal" aria-hidden="true"></i>
+        Proyectos
+      </a>
+
+      <a href="guides" class="nav-link active">
+        <i class="fas fa-book" aria-hidden="true"></i>
+        Guías
+      </a>
+
+      <a href="blog" class="nav-link">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+        Blog
+      </a>
+
+      <a href="contact" class="nav-link">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        Contacto
+      </a>
+
+    </aside>
+
+    <div class="lang-toggle-container">
+      <button
+        id="lang-btn"
+        class="lang-btn"
+        type="button"
+        aria-label="Cambiar idioma"
+      >
+        <i class="fas fa-globe" aria-hidden="true"></i>
+        <span id="lang-label">EN</span>
+      </button>
+    </div>
+
+    <main id="content">
+
+      <header>
+        <h1>Guías</h1>
+
+        <p class="subtitle">
+          @wbossw
+        </p>
+
+        <p class="terminal-prompt">
+          wbossw@guides:~$ Knowledge base cargada. Play & hack.
+        </p>
+      </header>
+
+      <section class="description">
+        Colección de writeups de distintas plataformas para practicar.
+      </section>
+
+      <section
+        class="filters"
+        id="filters"
+        aria-label="Filtrar guías"
+      >
+        <span
+          class="chip active"
+          data-filter="Todos"
+          role="button"
+          tabindex="0"
+        >
+          Todos
+        </span>
+
+        <span
+          class="chip"
+          data-filter="HTB"
+          role="button"
+          tabindex="0"
+        >
+          HTB
+        </span>
+
+        <span
+          class="chip"
+          data-filter="PortSwigger"
+          role="button"
+          tabindex="0"
+        >
+          PortSwigger
+        </span>
+      </section>
+
+      <section
+        class="vid-grid"
+        id="vidGrid"
+      >
+
+        <article
+          class="vid-card"
+          data-tags="HTB"
+        >
+          <span class="pill">HTB</span>
+
+          <div class="player">
+            <img
+              src="assets/guides/Hack-the-Box.png"
+              alt="Hack The Box - Cap"
+            >
+          </div>
+
+          <h2 class="vid-title">
+            Hack The Box — Cap
+          </h2>
+
+          <div class="meta">
+            <span class="badge">IDOR</span>
+            <span class="badge">PCAP</span>
+            <span class="badge">FTP</span>
+            <span class="badge">SSH</span>
+            <span class="badge">Escalada de privilegios</span>
+          </div>
+
+          <p class="vid-desc">
+            IDOR en archivos para realizar el análisis de un archivo PCAP,
+            acceder a la máquina víctima y elevar privilegios hasta obtener
+            acceso como usuario root.
+          </p>
+
+          <div class="btns">
+            <a
+              class="btn"
+              href="writeups/cap"
+            >
+              <i class="fas fa-book-open" aria-hidden="true"></i>
+              Ver WriteUp
+            </a>
+          </div>
+        </article>
+
+        <article
+          class="vid-card"
+          data-tags="HTB"
+        >
+          <span class="pill">HTB</span>
+
+          <div class="player">
+            <img
+              src="assets/guides/Hack-the-Box.png"
+              alt="Hack The Box - Responder"
+            >
+          </div>
+
+          <h2 class="vid-title">
+            Hack The Box — Responder
+          </h2>
+
+          <div class="meta">
+            <span class="badge">Responder</span>
+            <span class="badge">LLMNR</span>
+          </div>
+
+          <p class="vid-desc">
+            Captura de hashes en red y cracking controlado.
+          </p>
+
+          <div class="btns">
+            <span
+              class="btn"
+              aria-disabled="true"
+            >
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              Próximamente
+            </span>
+          </div>
+        </article>
+
+        <article
+          class="vid-card"
+          data-tags="HTB"
+        >
+          <span class="pill">HTB</span>
+
+          <div class="player">
+            <img
+              src="assets/guides/Hack-the-Box.png"
+              alt="Hack The Box - Three"
+            >
+          </div>
+
+          <h2 class="vid-title">
+            Hack The Box — Three
+          </h2>
+
+          <div class="meta">
+            <span class="badge">Web</span>
+            <span class="badge">PrivEsc</span>
+          </div>
+
+          <p class="vid-desc">
+            Explotación web y escalada de privilegios.
+          </p>
+
+          <div class="btns">
+            <span
+              class="btn"
+              aria-disabled="true"
+            >
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              Próximamente
+            </span>
+          </div>
+        </article>
+
+        <article
+          class="vid-card"
+          data-tags="HTB"
+        >
+          <span class="pill">HTB</span>
+
+          <div class="player">
+            <img
+              src="assets/guides/Hack-the-Box.png"
+              alt="Hack The Box - Archetype"
+            >
+          </div>
+
+          <h2 class="vid-title">
+            Hack The Box — Archetype
+          </h2>
+
+          <div class="meta">
+            <span class="badge">MSSQL</span>
+            <span class="badge">RCE</span>
+          </div>
+
+          <p class="vid-desc">
+            Abuso de credenciales y ejecución remota mediante SQL Server.
+          </p>
+
+          <div class="btns">
+            <span
+              class="btn"
+              aria-disabled="true"
+            >
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              Próximamente
+            </span>
+          </div>
+        </article>
+
+      </section>
+
+      <footer class="ticker-container">
+      <div class="ticker-container">
+        <div id="ticker" class="ticker">wbossw • Bug Bounty Hunter • Pentester •  Certificaciones • Recursos • Proyectos</div>
+      </div>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/guides.js"></script>
+  <script src="js/lang.js"></script>
+
+</body>
+</html>

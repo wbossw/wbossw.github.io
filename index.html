@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Portfolio de ciberseguridad, pentesting y Writeups de @wbossw."
+    data-i18n-attr="content:meta.description"
+  >
+  <meta
+    property="og:title"
+    content="wbossw - Ciberseguridad & Pentesting & Bug Bounty"
+    data-i18n-attr="content:meta.og.title"
+  >
+  <meta
+    property="og:description"
+    content="Auditorías ofensivas, laboratorios y recursos de seguridad."
+    data-i18n-attr="content:meta.og.description"
+  >
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+  <title data-i18n="page.title">wbossw Hacker Ético</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  >
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <div id="container">
+    <aside id="sidebar">
+      <div id="logo">
+        <img
+          src="assets/p1r4t3-wbossw.png"
+          alt="wbossw logo"
+          data-i18n-attr="alt:logo.alt"
+        >
+      </div>
+
+      <a href="https://wbossw.github.io/" class="nav-link active">
+        <i class="fas fa-home" aria-hidden="true"></i>
+        <span data-i18n="nav.home">Inicio</span>
+      </a>
+
+      <a href="projects" class="nav-link">
+        <i class="fas fa-terminal" aria-hidden="true"></i>
+        <span data-i18n="nav.projects">Proyectos</span>
+      </a>
+
+      <a href="guides" class="nav-link">
+        <i class="fas fa-book" aria-hidden="true"></i>
+        <span data-i18n="nav.guides">Guías</span>
+      </a>
+
+      <a href="blog" class="nav-link">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i>
+        <span data-i18n="nav.blog">Blog</span>
+      </a>
+
+      <a href="contact" class="nav-link">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <span data-i18n="nav.contact">Contacto</span>
+      </a>
+    </aside>
+
+    <div class="lang-toggle-container">
+      <button
+        id="lang-btn"
+        class="lang-btn"
+        type="button"
+        aria-label="Cambiar idioma"
+        data-i18n-attr="aria-label:lang.button"
+      >
+        <i class="fas fa-globe" aria-hidden="true"></i>
+        <span id="lang-label">EN</span>
+      </button>
+    </div>
+
+    <main id="content">
+      <h1>WbossW</h1>
+      <p class="subtitle">@wbossw</p>
+
+      <p class="terminal-prompt" data-i18n="home.terminal">
+        wbossw@root:~$ Sistema inicializado. Investigación activa.
+      </p>
+
+      <section class="description" data-i18n="home.description">
+        Investigador de seguridad especializado en Bug Bounty, Pentesting y análisis de vulnerabilidades. Cuento con experiencia evaluando la seguridad en sistemas e infraestructuras Linux y Windows, aplicaciones web, APIs y sistemas basados en modelos de lenguaje (LLMs). Mi foco principal es la identificación de fallos de seguridad con impacto real, abarcando desde vulnerabilidades de control de acceso y lógica de negocio hasta debilidades en entornos de IA.
+        Este portfolio reúne una selección de proyectos, herramientas desarrolladas, writeups e investigaciones. Sirve tanto de registro para mi aprendizaje continuo como de plataforma para compartir recursos y reflejar mi compromiso con la divulgación responsable.
+      </section>
+
+      <section class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-code" aria-hidden="true"></i>
+          </div>
+
+          <h2 class="skill-title" data-i18n="skills.vulnerability.title">
+            Investigación de Vulnerabilidades
+          </h2>
+
+          <p class="skill-description" data-i18n="skills.vulnerability.description">
+            Identificación, análisis y divulgación responsable de vulnerabilidades de seguridad en aplicaciones web, APIs y sistemas basados en inteligencia artificial (LLMs). Especializado en el descubrimiento de fallos con impacto real.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-laptop-code" aria-hidden="true"></i>
+          </div>
+
+          <h2 class="skill-title" data-i18n="skills.evidence.title">
+            Análisis de evidencias
+          </h2>
+
+          <p class="skill-description" data-i18n="skills.evidence.description">
+            Recopilación, preservación y análisis técnico de evidencias digitales obtenidas durante investigaciones de seguridad. Enfocado en la validación de vulnerabilidades, el estudio de indicadores y la documentación de hallazgos de forma precisa.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          </div>
+
+          <h2 class="skill-title" data-i18n="skills.pentesting.title">
+            Pentesting
+          </h2>
+
+          <p class="skill-description" data-i18n="skills.pentesting.description">
+            Evaluación de la seguridad de aplicaciones y servicios mediante metodologías ofensivas para identificar vulnerabilidades y proporcionar recomendaciones técnicas orientadas a su mitigación.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-cogs" aria-hidden="true"></i>
+          </div>
+
+          <h2 class="skill-title" data-i18n="skills.tools.title">
+            Desarrollo de Herramientas
+          </h2>
+
+          <p class="skill-description" data-i18n="skills.tools.description">
+            Diseño y desarrollo de herramientas y automatizaciones orientadas a optimizar tareas de auditoría, análisis de seguridad e investigación de vulnerabilidades.
+          </p>
+        </article>
+      </section>
+
+      <section class="social-links" aria-label="Enlaces sociales">
+        <a
+          href="https://github.com/wbossw"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-link"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span data-i18n="social.github">Perfil de GitHub</span>
+        </a>
+
+        <a href="contact" class="social-link">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <span data-i18n="social.contact">Contacto</span>
+        </a>
+
+        <a href="blog" class="social-link">
+          <i class="fas fa-trophy" aria-hidden="true"></i>
+          <span data-i18n="social.discoveries">Descubrimientos</span>
+        </a>
+      </section>
+
+      <footer class="ticker-container">
+      <div class="ticker-container">
+        <div id="ticker" class="ticker">wbossw • Bug Bounty Hunter • Pentester •  Certificaciones • Recursos • Proyectos</div>
+      </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/lang.js"></script>
+</body>
+</html>

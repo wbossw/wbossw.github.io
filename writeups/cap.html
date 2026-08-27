@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="description"
+content="Writeup de Hack The Box — Cap. Enumeración, explotación de IDOR, análisis PCAP, acceso mediante FTP y SSH y escalada de privilegios."
+>
+
+  <meta property="og:title" content="wbossw - Writeup - Hack The Box Cap">
+  <meta
+    property="og:description"
+    content="Writeup técnico de Hack The Box — Cap."
+  >
+
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
+  <title>wbossw - Writeup - Cap</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="/css/writeup.css">
+</head>
+
+<body>
+
+<canvas id="matrix" aria-hidden="true"></canvas>
+
+  <div id="container">
+
+<aside id="sidebar">
+  <div id="logo">
+    <a href="/" aria-label="Volver al inicio">
+      <img src="/assets/p1r4t3-wbossw.png" alt="wbossw logo">
+    </a>
+  </div>
+
+  <nav class="nav-menu" aria-label="Navegación principal">
+
+    <a href="/" class="nav-link">
+      <i class="fas fa-home" aria-hidden="true"></i>
+      <span>Inicio</span>
+    </a>
+
+    <a href="/projects" class="nav-link">
+      <i class="fas fa-terminal" aria-hidden="true"></i>
+      <span>Proyectos</span>
+    </a>
+
+    <a href="/guides" class="nav-link active" aria-current="page">
+      <i class="fas fa-book" aria-hidden="true"></i>
+      <span>Guías</span>
+    </a>
+
+    <a href="/blog" class="nav-link">
+      <i class="fas fa-pen-nib" aria-hidden="true"></i>
+      <span>Blog</span>
+    </a>
+
+    <a href="/contact" class="nav-link">
+      <i class="fas fa-envelope" aria-hidden="true"></i>
+      <span>Contacto</span>
+    </a>
+
+  </nav>
+</aside>
+
+<div class="lang-toggle-container">
+  <button
+    id="lang-btn"
+    class="lang-btn"
+    type="button"
+    aria-label="Cambiar idioma"
+  >
+    <i class="fas fa-globe" aria-hidden="true"></i>
+    <span id="lang-label">EN</span>
+  </button>
+</div>
+
+<main id="content">
+
+  <a href="/guides" class="back-btn">
+    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+    <span>Volver a las Guías</span>
+  </a>
+
+  <article class="writeup-container">
+
+    <header class="writeup-header">
+
+      <span class="pill">Hack The Box · CTF</span>
+
+      <h1>Cap</h1>
+
+      <p class="writeup-intro">
+        Writeup técnico de la máquina Cap de Hack The Box.
+      </p>
+
+      <div class="writeup-info-grid">
+
+        <div class="info-card">
+          <span class="label">
+            <i class="fas fa-desktop" aria-hidden="true"></i>
+            Sistema Operativo
+          </span>
+          <span class="value">Linux</span>
+        </div>
+
+        <div class="info-card">
+          <span class="label">
+            <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+            Dificultad
+          </span>
+          <span class="value diff-easy">Fácil</span>
+        </div>
+
+        <div class="info-card">
+          <span class="label">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+            IP Víctima
+          </span>
+          <span class="value ip-victim">10.129.65.229</span>
+        </div>
+
+        <div class="info-card">
+          <span class="label">
+            <i class="fas fa-user-ninja" aria-hidden="true"></i>
+            IP Atacante
+          </span>
+          <span class="value ip-attacker">10.0.2.15</span>
+        </div>
+
+      </div>
+    </header>
+
+    <hr class="separator">
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-network-wired" aria-hidden="true"></i>
+        1. Comprobación de Conectividad
+      </h2>
+
+      <p>
+        El primer paso consiste en comprobar la conectividad entre nuestra
+        máquina atacante y el objetivo mediante <code>ping</code>.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Conectividad</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>ping -c10 10.129.65.229</code></pre>
+      </div>
+
+      <p>
+        La respuesta obtenida confirma que existe comunicación con el
+        objetivo y que no se produce pérdida de paquetes.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-search" aria-hidden="true"></i>
+        2. Enumeración de Puertos
+      </h2>
+
+      <p>
+        Con la conectividad confirmada, realizamos una enumeración de los
+        puertos TCP expuestos mediante Nmap.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Nmap</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>nmap -p- --min-rate 5000 -T4 10.129.65.229</code></pre>
+      </div>
+
+      <p>
+        El escaneo identifica tres servicios accesibles:
+      </p>
+
+      <div class="info-card service-list">
+        <p><strong>21</strong><span>FTP</span></p>
+        <p><strong>22</strong><span>SSH</span></p>
+        <p><strong>80</strong><span>HTTP</span></p>
+      </div>
+
+      <p>
+        Estos servicios proporcionan los principales puntos de
+        enumeración para continuar con el análisis del objetivo.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-globe" aria-hidden="true"></i>
+        3. Análisis de la Aplicación Web
+      </h2>
+
+      <p>
+        El siguiente paso consiste en analizar el servicio HTTP disponible
+        en el puerto 80. La aplicación presenta un dashboard en el que
+        aparecemos autenticados como el usuario <strong>Nathan</strong>.
+      </p>
+
+      <p>
+        Los servicios FTP y SSH no permiten acceso anónimo, por lo que
+        necesitamos obtener credenciales válidas antes de utilizarlos.
+      </p>
+
+      <p>
+        También se realizó una enumeración básica de directorios sin
+        encontrar inicialmente ningún recurso que permitiera avanzar
+        directamente en la explotación.
+      </p>
+
+      <p>
+        Por ello, continuamos analizando las funcionalidades disponibles
+        dentro de la aplicación web.
+      </p>
+
+      <figure class="writeup-img-container">
+
+        <div
+          class="img-wrapper"
+          onclick="openLightbox(this)"
+          role="button"
+          tabindex="0"
+          aria-label="Ampliar captura del dashboard"
+        >
+          <img
+            class="writeup-img"
+            src="/writeups/images/cap/Dashboard-Cap.png"
+            alt="Dashboard de la aplicación web de Cap"
+            loading="lazy"
+          >
+
+          <span class="img-expand-hint">
+            <i class="fas fa-search-plus" aria-hidden="true"></i>
+            Ampliar
+          </span>
+        </div>
+
+        <figcaption class="img-caption">
+          <i class="fas fa-camera" aria-hidden="true"></i>
+          Dashboard de la aplicación web
+        </figcaption>
+
+      </figure>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-bug" aria-hidden="true"></i>
+        4. Identificación de una Vulnerabilidad IDOR
+      </h2>
+
+      <p>
+        Durante la navegación por la aplicación encontramos una
+        funcionalidad que permite acceder a recursos mediante un
+        identificador numérico incluido en la URL.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar URL">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Recurso</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>http://10.129.65.229/data/2</code></pre>
+      </div>
+
+      <p>
+        El identificador <code>2</code> corresponde al recurso asociado a
+        nuestro usuario.
+      </p>
+
+      <p>
+        Al modificar manualmente este identificador y utilizar
+        <code>0</code>, la aplicación devuelve un recurso perteneciente
+        a otro usuario.
+      </p>
+
+      <blockquote class="note">
+        <i class="fas fa-info-circle" aria-hidden="true"></i>
+        <div>
+          <strong>Vulnerabilidad identificada</strong>
+          <p>
+            La aplicación presenta una vulnerabilidad IDOR
+            (<em>Insecure Direct Object Reference</em>) debido a la ausencia
+            de una comprobación adecuada de autorización sobre el recurso
+            solicitado.
+          </p>
+        </div>
+      </blockquote>
+
+      <p>
+        El recurso obtenido corresponde a un archivo PCAP que puede ser
+        analizado para obtener información sobre el tráfico de red.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-file-waveform" aria-hidden="true"></i>
+        5. Análisis del Archivo PCAP
+      </h2>
+
+      <p>
+        Una vez identificado el archivo PCAP, lo descargamos y procedemos
+        a analizarlo mediante Wireshark.
+      </p>
+
+      <p>
+        La inspección del tráfico revela comunicaciones sin cifrar.
+        Entre los paquetes capturados aparece una autenticación contra
+        el servicio FTP.
+      </p>
+
+      <p>
+        En primer lugar podemos identificar el usuario utilizado:
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar usuario">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Usuario FTP</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>nathan</code></pre>
+      </div>
+
+      <p>
+        Posteriormente encontramos la contraseña transmitida durante la
+        autenticación:
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar contraseña">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Credenciales recuperadas</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>Buck3tH4TF0RM3!</code></pre>
+      </div>
+
+      <div class="info-card credentials">
+        <p>
+          <strong>Usuario</strong>
+          <span>nathan</span>
+        </p>
+
+        <p>
+          <strong>Contraseña</strong>
+          <span>Buck3tH4TF0RM3!</span>
+        </p>
+      </div>
+
+      <p>
+        Disponemos ahora de unas credenciales válidas que podremos
+        comprobar contra los servicios FTP y SSH identificados durante
+        la enumeración.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-folder-open" aria-hidden="true"></i>
+        6. Acceso mediante FTP
+      </h2>
+
+      <p>
+        Utilizamos las credenciales obtenidas del archivo PCAP para
+        acceder al servicio FTP.
+      </p>
+
+      <p>
+        Una vez autenticados, enumeramos el contenido disponible:
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando FTP">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Enumeración FTP</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>ls</code></pre>
+      </div>
+
+      <p>
+        Entre los archivos disponibles encontramos
+        <code>users.txt</code>, que descargamos utilizando:
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando FTP">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Descarga</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>get users.txt</code></pre>
+      </div>
+
+      <p>
+        Una vez descargado el archivo, cerramos la sesión FTP:
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando FTP">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — Salida</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>exit</code></pre>
+      </div>
+
+      <p>
+        De vuelta en nuestra máquina atacante, comprobamos el contenido
+        del archivo:
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — users.txt</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>cat users.txt</code></pre>
+      </div>
+
+      <blockquote class="note">
+        <i class="fas fa-flag" aria-hidden="true"></i>
+        <div>
+          <strong>User Flag</strong>
+          <code>a34c116802a8d62f79a500c79c511ec7</code>
+        </div>
+      </blockquote>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-terminal" aria-hidden="true"></i>
+        7. Acceso mediante SSH
+      </h2>
+
+      <p>
+        Comprobamos que las mismas credenciales también son válidas para
+        el servicio SSH.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comando SSH">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">wbossw — SSH</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>ssh nathan@10.129.65.229</code></pre>
+      </div>
+
+      <p>
+        La conexión proporciona una shell interactiva como
+        <strong>nathan</strong>, permitiendo continuar con la enumeración
+        local del sistema y analizar posibles vectores de escalada de
+        privilegios.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+        8. Escalada de Privilegios
+      </h2>
+
+      <p>
+        Con acceso al sistema como <strong>nathan</strong>, el siguiente
+        objetivo es obtener privilegios de administrador.
+      </p>
+
+      <p>
+        Durante la enumeración se identifica que
+        <code>/usr/bin/python3.8</code> dispone de privilegios especiales
+        que pueden ser aprovechados para ejecutar acciones con permisos
+        elevados.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar ruta">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">bash — Python 3.8</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>/usr/bin/python3.8</code></pre>
+      </div>
+
+      <p>
+        Al ejecutar el intérprete con dichos privilegios podemos modificar
+        el UID efectivo del proceso y posteriormente iniciar una shell.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar código Python">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">python3.8 — Privilege Escalation</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>import os
+os.setuid(0)
+os.system("/bin/bash")</code></pre> </div>
+      <p>
+        <code>os.setuid(0)</code> establece el UID del proceso en
+        <code>0</code>, correspondiente al usuario <strong>root</strong>.
+        Posteriormente, <code>os.system("/bin/bash")</code> inicia una
+        nueva shell con los privilegios disponibles para el proceso.
+      </p>
+
+      <blockquote class="note success-note">
+        <i class="fas fa-check-circle" aria-hidden="true"></i>
+        <div>
+          <strong>Privilegios elevados obtenidos</strong>
+          <p>
+            La explotación permite obtener una shell con privilegios de
+            root.
+          </p>
+        </div>
+      </blockquote>
+    </section>
+
+    <section class="writeup-section final-section">
+      <h2>
+        <i class="fas fa-flag" aria-hidden="true"></i>
+        9. Obtención de la Flag Final
+      </h2>
+
+      <p>
+        Con acceso como root, accedemos al directorio
+        <code>/root</code> y consultamos el archivo que contiene la flag
+        final.
+      </p>
+
+      <div class="terminal-block" onclick="copyToClipboard(this)" role="button" tabindex="0" aria-label="Copiar comandos">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <span class="terminal-title">root — root.txt</span>
+
+          <span class="copy-hint">
+            <i class="fas fa-copy" aria-hidden="true"></i>
+            Clic para copiar
+          </span>
+        </div>
+
+        <pre><code>cd /root
+
+cat root.txt</code></pre> </div>
+
+      <blockquote class="note">
+        <i class="fas fa-flag" aria-hidden="true"></i>
+        <div>
+          <strong>Root Flag</strong>
+          <code>244aaa67f543561d20a2863d6ea024b8</code>
+        </div>
+      </blockquote>
+
+      <p>
+        Con la obtención de la flag de root queda completada la máquina
+        Cap.
+      </p>
+
+      <div class="attack-chain">
+        <span>Reconocimiento</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>Enumeración</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>IDOR</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>PCAP</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>Credenciales</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>FTP / SSH</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>PrivEsc</span>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <strong>Root</strong>
+      </div>
+    </section>
+
+  </article>
+
+  <footer class="ticker-container">
+    <div id="ticker" class="ticker">
+      wbossw • Pentesting • Ciberseguridad • Writeups • Hack The Box • Seguridad Ofensiva
+    </div>
+  </footer>
+
+</main>
+
+  </div>
+
+  <div
+    id="lightbox"
+    class="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Imagen ampliada"
+    onclick="closeLightbox(event)"
+  >
+    <button
+      class="lightbox-close"
+      type="button"
+      aria-label="Cerrar imagen"
+      onclick="closeLightbox(event)"
+    >
+      &times;
+    </button>
+<img
+  id="lightbox-img"
+  class="lightbox-content"
+  src=""
+  alt=""
+>
+
+  </div>
+
+  <script src="/js/main.js"></script>
+
+  <script src="/js/lang.js"></script>
+
+  <script>
+    function copyToClipboard(block) {
+      const code = block.querySelector('code');
+      const hint = block.querySelector('.copy-hint');
+
+      if (!code || !hint) return;
+
+      const text = code.innerText;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = hint.innerHTML;
+
+        hint.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copiado';
+
+        setTimeout(() => {
+          hint.innerHTML = originalText;
+        }, 1800);
+      }).catch(() => {
+        hint.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i> Error';
+
+        setTimeout(() => {
+          hint.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Clic para copiar';
+        }, 1800);
+      });
+    }
+
+    function openLightbox(wrapperElement) {
+      const img = wrapperElement.querySelector('img');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      if (!img || !lightbox || !lightboxImg) return;
+
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+
+      lightbox.classList.add('active');
+      document.body.classList.add('lightbox-open');
+    }
+
+    function closeLightbox(event) {
+      if (
+        event &&
+        event.target &&
+        event.target.id === 'lightbox-img'
+      ) {
+        return;
+      }
+
+      const lightbox = document.getElementById('lightbox');
+
+      if (!lightbox) return;
+
+      lightbox.classList.remove('active');
+      document.body.classList.remove('lightbox-open');
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+
+      if (
+        (event.key === 'Enter' || event.key === ' ') &&
+        event.target.classList.contains('terminal-block')
+      ) {
+        event.preventDefault();
+        copyToClipboard(event.target);
+      }
+
+      if (
+        (event.key === 'Enter' || event.key === ' ') &&
+        event.target.classList.contains('img-wrapper')
+      ) {
+        event.preventDefault();
+        openLightbox(event.target);
+      }
+    });
+  </script>
+
+</body>
+</html>
