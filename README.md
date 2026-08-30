@@ -23,7 +23,3 @@ The website showcases my experience as a Bug Bounty Hunter and Security Research
 ## Deployment
 
 The portfolio is deployed using GitHub Pages.
-
-## License
-
-This project is licensed under the MIT License.
